@@ -30,10 +30,10 @@ def decode(digits, base):
     number = 0
     power = 0
     
-    for num in digits:
+    for num in digits[::-1]:
         print(num)
-        number += base ** int(num)
-
+        if int(num) == 1:
+            number += base ** power
         power += 1
 
     print(number)
@@ -95,4 +95,4 @@ def main():
 
 if __name__ == '__main__':
     # main()
-    decode('10010011', 2)
+    decode('11101101', 2)
