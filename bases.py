@@ -24,6 +24,20 @@ def decode(digits, base):
     # TODO: Decode digits from any base (2 up to 36)
     # ...
 
+    # takes in binary input
+    # get length of the string
+    # condition that accounts for 0's 
+    number = 0
+    power = 0
+    
+    for num in digits:
+        print(num)
+        number += base ** int(num)
+
+        power += 1
+
+    print(number)
+
 
 def encode(number, base):
     """Encode given number in base 10 to digits in given base.
@@ -40,6 +54,8 @@ def encode(number, base):
     # ...
     # TODO: Encode number in any base (2 up to 36)
     # ...
+
+    
 
 
 def convert(digits, base1, base2):
@@ -78,4 +94,5 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    # main()
+    decode('10010011', 2)
