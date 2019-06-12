@@ -10,10 +10,12 @@ import string
 # string.printable is digits + ascii_letters + punctuation + whitespace
 num_and_chars = string.digits + string.ascii_lowercase
 dictionary = dict()
+dictionary_encode = dict()
 num = 0
 
 for char in num_and_chars:
     dictionary[char] = num
+    dictionary_encode[num] = char
     num += 1
 
 def decode(digits, base):
@@ -23,16 +25,11 @@ def decode(digits, base):
     return: int -- integer representation of number (in base 10)"""
     # Handle up to base 36 [0-9a-z]
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
-    # TODO: Decode digits from binary (base 2)
-    # ...
-    # TODO: Decode digits from hexadecimal (base 16)
-    # ...
-    # TODO: Decode digits from any base (2 up to 36)
-    # ...
 
     # takes in binary input
     # get length of the string
     # condition that accounts for 0's 
+
     if base == 2:
         number = 0
         power = 0
@@ -42,15 +39,15 @@ def decode(digits, base):
                 number += base ** power
             power += 1
         return number
-    elif base == 16:
-        number = 0
-        power = 0
-        
-        for num in digits[::-1]:
-            hex_num = dictionary[num.lower()]
-            number += hex_num * (base ** power)
-            power += 1
-        return number
+    
+    number = 0
+    power = 0
+    
+    for num in digits[::-1]:
+        hex_num = dictionary[num.lower()]
+        number += hex_num * (base ** power)
+        power += 1
+    return number
 
 
 def encode(number, base):
@@ -62,22 +59,27 @@ def encode(number, base):
     assert 2 <= base <= 36, 'base is out of range: {}'.format(base)
     # Handle unsigned numbers only for now
     assert number >= 0, 'number is negative: {}'.format(number)
-    # TODO: Encode number in binary (base 2)
-    # ...
-    # TODO: Encode number in hexadecimal (base 16)
-    # ...
-    # TODO: Encode number in any base (2 up to 36)
-    # ...
+
     string = ''
+
+    if number == 0:
+        return '0'
+
     while number != 0:
-        result = number // base
-
         remainder = number % base
+        quotient = number // base
 
-        string += str(remainder)
-        
-        number = result
-    return string[::-1] 
+        if remainder > 9:
+            remainder = dictionary_encode[remainder]
+            string += str(remainder)
+            number = quotient
+        else:
+            string += str(remainder)
+            number = quotient
+    return string[::-1]
+
+    
+
         
 def convert(digits, base1, base2):
     """Convert given digits in base1 to digits in base2.
@@ -88,14 +90,6 @@ def convert(digits, base1, base2):
     # Handle up to base 36 [0-9a-z]
     assert 2 <= base1 <= 36, 'base1 is out of range: {}'.format(base1)
     assert 2 <= base2 <= 36, 'base2 is out of range: {}'.format(base2)
-    # TODO: Convert digits from base 2 to base 16 (and vice versa)
-    # ...
-    # TODO: Convert digits from base 2 to base 10 (and vice versa)
-    # ...
-    # TODO: Convert digits from base 10 to base 16 (and vice versa)
-    # ...
-    # TODO: Convert digits from any base to any base (2 up to 36)
-    # ...
 
     decoded_number = decode(digits, base1)
     encoded_to_digits = encode(decoded_number, base2)
@@ -119,5 +113,5 @@ def main():
 
 if __name__ == '__main__':
     # main()
-    print(decode('DEADBEEF', 16))
-    # print(encode(27, 2))
+    print(decode('uu', 36))
+    print(encode(1110, 36))
