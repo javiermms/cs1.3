@@ -12,7 +12,17 @@ def factorial(n):
 
 def factorial_iterative(n):
     # TODO: implement the factorial function iteratively here
-    pass
+    #  = 5 * 4 * 3 * 2 * 1
+    product = 1
+
+    if n == 0 or n == 1:
+        return 1
+
+    for num in range(n, 1, -1):
+        product *= num
+    return product
+    
+   
     # once implemented, change factorial (above) to call factorial_iterative
     # to verify that your iterative implementation passes all tests
 
@@ -39,4 +49,5 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    # main()
+    print(factorial_iterative(5))
