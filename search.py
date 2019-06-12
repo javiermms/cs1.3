@@ -40,6 +40,9 @@ def binary_search(array, item):
 def binary_search_iterative(array, item):
     '''
     0(log n) because it cuts the problems time in half each time 
+
+    Best Case: It the first middle
+    Worst Case: Halving the whole array entirely.
     '''
     low = 0
     high= len(array) - 1
@@ -62,6 +65,8 @@ def binary_search_iterative(array, item):
 def binary_search_recursive(array, item, low=None, high=None):
     '''
     0(log n) because it cuts the problems time in half each time 
+    Best Case: It the first middle
+    Worst Case: Halving the whole array entirely.
     '''
 
     if low is None and high is None:
