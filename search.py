@@ -33,32 +33,52 @@ def binary_search(array, item):
     """return the index of item in sorted array or None if item is not found"""
     # implement binary_search_iterative and binary_search_recursive below, then
     # change this to call your implementation to verify it passes all tests
-    return binary_search_iterative(array, item)
-    # return binary_search_recursive(array, item)
+    # return binary_search_iterative(array, item)
+    return binary_search_recursive(array, item)
 
 
 def binary_search_iterative(array, item):
-    
+    '''
+    0(log n) because it cuts the problems time in half each time 
+    '''
     low = 0
     high= len(array) - 1
 
     while low <= high:
         mid = (low + high) // 2
         if array[mid] == item:
-            return mid
+            return mid #item found
 
         if array[mid] > item:
-            high = mid - 1 # ignores the right
+            high = mid - 1 # ignores the right (high)
 
         if array[mid] < item:
-            low = mid + 1 # ignores the left
+            low = mid + 1 # ignores the left (low)
 
     return None
 
 
 
-def binary_search_recursive(array, item, left=None, right=None):
-    # TODO: implement binary search recursively here
-    pass
-    # once implemented, change binary_search to call binary_search_recursive
-    # to verify that your recursive implementation passes all tests
+def binary_search_recursive(array, item, low=None, high=None):
+    '''
+    0(log n) because it cuts the problems time in half each time 
+    '''
+
+    if low is None and high is None:
+        low = 0 
+        high = len(array) - 1
+
+    if low > high:
+        return None
+
+    mid = (low + high) // 2
+    if array[mid] == item:
+        return mid #item found
+
+    elif array[mid] > item:
+        high = mid - 1  # ignores the right (high)
+        return binary_search_recursive(array, item, low, high)
+
+    elif array[mid] < item:
+        low = mid + 1  # ignores the left (low)
+        return binary_search_recursive(array, item, low, high)
