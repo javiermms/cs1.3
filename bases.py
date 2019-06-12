@@ -8,7 +8,13 @@ import string
 # string.ascii_uppercase is 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 # string.ascii_letters is ascii_lowercase + ascii_uppercase
 # string.printable is digits + ascii_letters + punctuation + whitespace
+num_and_chars = string.digits + string.ascii_lowercase
+dictionary = dict()
+num = 0
 
+for char in num_and_chars:
+    dictionary[char] = num
+    num += 1
 
 def decode(digits, base):
     """Decode given digits in given base to number in base 10.
@@ -27,14 +33,24 @@ def decode(digits, base):
     # takes in binary input
     # get length of the string
     # condition that accounts for 0's 
-    number = 0
-    power = 0
-    
-    for num in digits[::-1]:
-        if int(num) == 1:
-            number += base ** power
-        power += 1
-    return number
+    if base == 2:
+        number = 0
+        power = 0
+        
+        for num in digits[::-1]:
+            if int(num) == 1:
+                number += base ** power
+            power += 1
+        return number
+    elif base == 16:
+        number = 0
+        power = 0
+        
+        for num in digits[::-1]:
+            hex_num = dictionary[num.lower()]
+            number += hex_num * (base ** power)
+            power += 1
+        return number
 
 
 def encode(number, base):
@@ -103,5 +119,5 @@ def main():
 
 if __name__ == '__main__':
     # main()
-    print(decode('00011011', 2))
-    print(encode(27, 2))
+    print(decode('DEADBEEF', 16))
+    # print(encode(27, 2))
