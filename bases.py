@@ -31,12 +31,10 @@ def decode(digits, base):
     power = 0
     
     for num in digits[::-1]:
-        print(num)
         if int(num) == 1:
             number += base ** power
         power += 1
-
-    print(number)
+    return number
 
 
 def encode(number, base):
@@ -54,10 +52,17 @@ def encode(number, base):
     # ...
     # TODO: Encode number in any base (2 up to 36)
     # ...
+    string = ''
+    while number != 0:
+        result = number // base
 
-    
+        remainder = number % base
 
-
+        string += str(remainder)
+        
+        number = result
+    return string[::-1] 
+        
 def convert(digits, base1, base2):
     """Convert given digits in base1 to digits in base2.
     digits: str -- string representation of number (in base1)
@@ -76,6 +81,9 @@ def convert(digits, base1, base2):
     # TODO: Convert digits from any base to any base (2 up to 36)
     # ...
 
+    decoded_number = decode(digits, base1)
+    encoded_to_digits = encode(decoded_number, base2)
+    return encoded_to_digits
 
 def main():
     """Read command-line arguments and convert given digits between bases."""
@@ -95,4 +103,5 @@ def main():
 
 if __name__ == '__main__':
     # main()
-    decode('11101101', 2)
+    print(decode('00011011', 2))
+    print(encode(27, 2))

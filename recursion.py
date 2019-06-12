@@ -11,8 +11,6 @@ def factorial(n):
 
 
 def factorial_iterative(n):
-    # TODO: implement the factorial function iteratively here
-    #  = 5 * 4 * 3 * 2 * 1
     product = 1
 
     if n == 0 or n == 1:
@@ -21,11 +19,6 @@ def factorial_iterative(n):
     for num in range(n, 1, -1):
         product *= num
     return product
-    
-   
-    # once implemented, change factorial (above) to call factorial_iterative
-    # to verify that your iterative implementation passes all tests
-
 
 def factorial_recursive(n):
     # check if n is one of the base cases
@@ -49,5 +42,4 @@ def main():
 
 
 if __name__ == '__main__':
-    # main()
-    print(factorial_iterative(5))
+    main()
