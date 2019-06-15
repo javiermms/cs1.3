@@ -10,11 +10,9 @@ def contains(text, pattern):
     count= 0
     pattern_count = 0
     repeats = 0
-    
-    # thing about the indices in the array
 
     for num in range(0, text_length):
-        
+
         if text[num] == pattern[pattern_count]:
             count += 1
             if count == pattern_length:
