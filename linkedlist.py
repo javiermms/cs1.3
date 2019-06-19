@@ -103,6 +103,31 @@ class LinkedList(object):
             raise ValueError('List index out of range: {}'.format(index))
         # TODO: Find the node before the given index and insert item after it
 
+        # if list is empty how would you implement this
+
+        node_count = 0
+        node = self.head
+        new_node = Node(item)
+    
+
+        if index == 0:
+            return self.prepend(item)
+        
+        if node == None:
+            return self.append(item)
+
+        while node is not None:
+           
+            if node_count == index - 1:
+                new_node.next = node.next
+                node.next = new_node
+                self.size += 1
+
+            self.tail = node
+
+            node = node.next
+            node_count += 1 
+
     def append(self, item):
         """Insert the given item at the tail of this linked list.
         Best and worst case running time: ??? under what conditions? [TODO]"""
