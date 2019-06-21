@@ -1,0 +1,4 @@
+{
+  "hashtable_test.py::HashTableTest::test_resize": true,
+  "strings.py::test_string_algorithms": true
+}
