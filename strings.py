@@ -26,7 +26,11 @@ def find_all_indexes(text, pattern):
 	or an empty list if not found."""
 	assert isinstance(text, str), 'text is not a string: {}'.format(text)
 	assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
-	
+
+	# Worst Case Runtime: O(n) --> n is len(text)
+    # Best Case Runtime: O(1) --> if text == ''
+    # Space Complexity: O(n) --> appending to indexes list
+
 	indexes = []
 
 	if pattern == "":

@@ -54,6 +54,10 @@ class StringsTest(unittest.TestCase):
         assert find_index('abc', 'abc') == 0  # all strings contain themselves
         assert find_index('aaa', 'a') == 0  # multiple occurrences
         assert find_index('aaa', 'aa') == 0  # overlapping pattern
+        assert find_index('dog', 'o') == 1
+        assert find_index('cat', 't') == 2
+        assert find_index('kittens', 'e') == 4
+
        
 
     def test_find_index_with_non_matching_patterns(self):
@@ -62,6 +66,11 @@ class StringsTest(unittest.TestCase):
         assert find_index('abc', 'ac') is None  # important to test close cases
         assert find_index('abc', 'az') is None  # first letter, but not last
         assert find_index('abc', 'abz') is None  # first 2 letters, but not last
+        assert find_index('hello', 'n') is None
+        assert find_index('hey', 'hy') is None
+        assert find_index('a', '4') is None
+        assert find_index('herreo', 'l') is None
+
     
     def test_find_index_with_complex_patterns(self):
         # Difficult test cases (examples) with complex patterns
@@ -75,6 +84,7 @@ class StringsTest(unittest.TestCase):
         assert find_index('abcabcdabcde', 'abcd') == 3  # multiple occurrences, overlapping prefix
         assert find_index('abra cadabra', 'abra') == 0  # multiple occurrences
         assert find_index('abra cadabra', 'adab') == 6  # overlapping prefix
+        assert find_index('heyitellme', 'tell') == 4
        
 
     def test_find_all_indexes_with_matching_patterns(self):
@@ -88,6 +98,10 @@ class StringsTest(unittest.TestCase):
         assert find_all_indexes('abc', 'abc') == [0]  # all strings contain themselves
         assert find_all_indexes('aaa', 'a') == [0, 1, 2]  # multiple occurrences
         assert find_all_indexes('aaa', 'aa') == [0, 1]  # overlapping pattern
+        assert find_all_indexes('hello', 'hello') == [0]
+        assert find_all_indexes('yaass', 'aa') == [1]
+        assert find_all_indexes('getdown', 'dow') == [3]
+
         
 
     def test_find_all_indexes_with_non_matching_patterns(self):
@@ -96,6 +110,8 @@ class StringsTest(unittest.TestCase):
         assert find_all_indexes('abc', 'ac') == []  # important to test close cases
         assert find_all_indexes('abc', 'az') == []  # first letter, but not last
         assert find_all_indexes('abc', 'abz') == []  # first 2 letters, but not last
+        assert find_all_indexes('what', 'is') == []
+        assert find_all_indexes('this', 'yes') == []
         
 
     def test_find_all_indexes_with_complex_patterns(self):
