@@ -120,6 +120,8 @@ class HashTable(object):
         # ...
         # TODO: If so, automatically resize to reduce the load factor
         # ...
+        if self.load_factor() > .75:
+            self._resize()
 
     def delete(self, key):
         """Delete the given key and its associated value, or raise KeyError.
@@ -152,16 +154,14 @@ class HashTable(object):
         # TODO: Get a list to temporarily hold all current key-value entries
         temp_stor = self.items()
 
-        print(temp_stor)
-
-        # for ll in self.buckets:
-        
-
         # TODO: Create a new list of new_size total empty linked list buckets
-        resized_hash = [LinkedList() for i in range(new_size)]
+        self.buckets = [LinkedList() for i in range(new_size)]
+        self.size = 0
         # TODO: Insert each key-value entry into the new list of buckets,
         # which will rehash them into a new bucket index based on the new size
         # ...
+        for entry in temp_stor:
+            self.set(entry[0],entry[1])
 
 
 def test_hash_table():
