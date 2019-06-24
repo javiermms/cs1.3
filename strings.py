@@ -4,16 +4,11 @@ def contains(text, pattern):
 	"""Return a boolean indicating whether pattern occurs in text."""
 	assert isinstance(text, str), 'text is not a string: {}'.format(text)
 	assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
-	
-	length = len(pattern)
-	index = 0
 
-	while index < len(text) + 1 - length:
-		if text[index: index + (length)] == pattern:
-			return True
-		index += 1
- 
-	return False
+	if find_all_indexes(text, pattern) == []:
+		return False
+	else:
+		return True
 
 def find_index(text, pattern):
 	"""Return the starting index of the first occurrence of pattern in text,
@@ -21,19 +16,10 @@ def find_index(text, pattern):
 	assert isinstance(text, str), 'text is not a string: {}'.format(text)
 	assert isinstance(pattern, str), 'pattern is not a string: {}'.format(text)
 	
-	text_index = 0
-
-	if pattern == '':
-		return text_index
-
-	while text_index != len(text):
-		for num in range(len(pattern)):
-			if text_index + num < len(text):
-				if text[text_index + num] != pattern[num]:
-					break
-				if num == len(pattern) - 1:
-					return text_index
-		text_index += 1
+	if find_all_indexes(text, pattern)	== []:
+		return None
+	else:
+		return find_all_indexes(text, pattern)[0]
 
 def find_all_indexes(text, pattern):
 	"""Return a list of starting indexes of all occurrences of pattern in text,
@@ -44,7 +30,6 @@ def find_all_indexes(text, pattern):
 	indexes = []
 
 	if pattern == "":
-		num = 0
 		for num in range(0, len(text)):
 			indexes.append(num)
 		return indexes
@@ -58,8 +43,6 @@ def find_all_indexes(text, pattern):
 			else: continue
 
 	return indexes
-
-
 	
 def test_string_algorithms(text, pattern):
 	found = contains(text, pattern)
