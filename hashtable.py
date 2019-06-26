@@ -156,8 +156,14 @@ class HashTable(object):
         # cleaner way to do this
         self.__init__(new_size) #2b ==> O(b)
       
-        for entry in temporary_entries: #O(n) * O(l)[n/b] ==> O(b)
+        for entry in temporary_entries: #O(n) * O(l)
             self.set(entry[0],entry[1]) 
+
+        # n + b + n + l drop l
+        # 2n + b 
+        # n+b
+        # n + 2n
+        # O(n)
 
 def test_hash_table():
     ht = HashTable(4)
