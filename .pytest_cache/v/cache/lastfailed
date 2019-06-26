@@ -18,6 +18,5 @@
   "binarytree_test.py::BinarySearchTreeTest::test_search_with_7_items": true,
   "binarytree_test.py::BinarySearchTreeTest::test_search_with_7_strings": true,
   "binarytree_test.py::BinarySearchTreeTest::test_size": true,
-  "binarytree_test.py::BinaryTreeNodeTest::test_height": true,
   "strings.py::test_string_algorithms": true
 }
