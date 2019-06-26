@@ -26,9 +26,8 @@ class HashTable(object):
     def load_factor(self):
         """Return the load factor, the ratio of number of entries to buckets.
         Best and worst case running time: ??? under what conditions? [TODO]"""
-        # TODO: Calculate load factor
-        l_factor = self.size / len(self.buckets)
-        return l_factor
+    
+        return self.size / len(self.buckets)
 
     def keys(self):
         """Return a list of all keys in this hash table.
@@ -100,8 +99,8 @@ class HashTable(object):
 
     def set(self, key, value):
         """Insert or update the given key with its associated value.
-        Best case running time: ??? under what conditions? [TODO]
-        Worst case running time: ??? under what conditions? [TODO]"""
+        Best case running time:
+        Worst case running time:"""
         # Find the bucket the given key belongs in
         index = self._bucket_index(key)
         bucket = self.buckets[index]
@@ -116,10 +115,7 @@ class HashTable(object):
         # Insert the new key-value entry into the bucket in either case
         bucket.append((key, value))
         self.size += 1
-        # TODO: Check if the load factor exceeds a threshold such as 0.75
-        # ...
-        # TODO: If so, automatically resize to reduce the load factor
-        # ...
+       
         if self.load_factor() > .75:
             self._resize()
 
@@ -151,18 +147,17 @@ class HashTable(object):
         # Option to reduce size if buckets are sparsely filled (low load factor)
         elif new_size is 0:
             new_size = len(self.buckets) / 2  # Half size
-        # TODO: Get a list to temporarily hold all current key-value entries
-        temp_stor = self.items()
 
-        # TODO: Create a new list of new_size total empty linked list buckets
-        self.buckets = [LinkedList() for i in range(new_size)]
-        self.size = 0
-        # TODO: Insert each key-value entry into the new list of buckets,
-        # which will rehash them into a new bucket index based on the new size
-        # ...
-        for entry in temp_stor:
-            self.set(entry[0],entry[1])
+        temporary_entries = self.items() #b * (l) n/b = O(n) 
 
+        # self.buckets = [LinkedList() for i in range(new_size)] #O(n)
+        # self.size = 0 
+
+        # cleaner way to do this
+        self.__init__(new_size) #2b ==> O(b)
+      
+        for entry in temporary_entries: #O(n) * O(l)[n/b] ==> O(b)
+            self.set(entry[0],entry[1]) 
 
 def test_hash_table():
     ht = HashTable(4)
