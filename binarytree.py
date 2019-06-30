@@ -251,7 +251,7 @@ class BinarySearchTree(object):
         Start at the given node and visit each node with the given function.
         TODO: Running time: ??? Why and under what conditions?
         TODO: Memory usage: ??? Why and under what conditions?""" 
-        
+
         stack = LinkedList()
         
         while stack.head or node is not None:
@@ -347,8 +347,6 @@ class BinarySearchTree(object):
                 queue.enqueue(node.left)
             if node.right:
                 queue.enqueue(node.right)
-        
-
 
 def test_binary_search_tree():
     # Create a complete binary search tree of 3, 7, or 15 items in level-order
