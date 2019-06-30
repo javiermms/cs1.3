@@ -46,23 +46,39 @@ class Set(object):
 		return new_set
 
 	def intersection(self, other_set):
-		"""---"""
-		# TODO: return a new set that is the intersection of this set and other_set
-		pass
+		"""Returns a new set of any matching vaules found between set passed in and self.elements"""
+		new_set = Set()
+		for element in other_set.elements:
+			if self.contains(element):
+				new_set.add(element)
+		
+		return new_set
+
 
 	def difference(self, other_set):
-		"""---"""
-		# TODO: return a new set that is the difference of this set and other_set
-		pass
+		"""Returns a new set of diffrences found between set passed in (other_set) and self.elements"""
+		new_set = Set()
+		for element in other_set.elements:
+			if not self.contains(element):
+				new_set.add(element)
+		
+		for element in self.elements:
+			if not other_set.contains(element):
+				new_set.add(element)
+				
+		return new_set
+
 
 	def is_subset(self, other_set):
-		"""---"""
-		# TODO: return a boolean indicating whether other_set is a subset of this set
-		pass
+		"""Returns Booelean value depending if other_set is a subset of self.elements"""
+		for element in other_set.elements:
+			if not self.contains(element):
+				return False
+		return True
 
 def test_set():
 	s = Set([1, 5, 9, 7, 3])
-	r = Set([20, 30, 15, 7, 3])
+	r = Set([1, 5, 7, 3, 9])
 	# print(s)  #set size
 	# s.add(10)
 	# s.add('cheese')
@@ -73,7 +89,11 @@ def test_set():
 	# s.remove(False) 
 	print(s)
 	print(r)
-	print(s.union(r))
+	# print(s.union(r))
+	# print(s.intersection(r))
+	# print(s.difference(r))
+	print(s.is_subset(r))
+
 	
 if __name__ == '__main__':
 	test_set()
