@@ -5,9 +5,9 @@ class Set(object):
 		self.elements = []
 		self.size = 0
 
-		# if elements is not None:
-		# 	for item in elements:
-		# 		self.add(item)
+		if elements is not None:
+			for item in elements:
+				self.add(item)
 
 	def __repr__(self):
 		"""Return a string representation of this node."""
@@ -16,10 +16,13 @@ class Set(object):
 	def contains(self, element):
 		"""---"""
 		# TODO:return a boolean indicating whether element is in this set
-		for item in self.elements:
-			if item == element:
-				return True
-		return False
+		# for item in self.elements:
+		# 	if item == element:
+		# 		return True
+		# return False
+		
+		return element in self.elements
+
 
 	def add(self, element):
 		"""---"""
@@ -31,7 +34,15 @@ class Set(object):
 	def remove(self, element):
 		"""---"""
 		# TODO: remove element from this set, if present, or else raise KeyError
-		pass
+		if not self.contains(element):
+			raise KeyError('Element {} not in set'.format(element))
+
+		index = self.elements.index(element)
+		self.elements.pop(index)
+		self.size -= 1
+		
+		
+		
 
 	def union(self, other_set):
 		"""---"""
@@ -56,6 +67,10 @@ class Set(object):
 def test_set():
 	s = Set([1, 5, 9, 7, 3])
 	print(s)  #set size
+	s.add(10)
+	print(s) 
+	s.remove(9) 
+	print(s) 
 	
 if __name__ == '__main__':
 	test_set()
