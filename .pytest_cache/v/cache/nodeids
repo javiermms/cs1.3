@@ -8,5 +8,6 @@
   "set_operations_test.py::SetTest::test_intersection",
   "set_operations_test.py::SetTest::test_is_subset",
   "set_operations_test.py::SetTest::test_remove",
+  "set_operations_test.py::SetTest::test_size",
   "set_operations_test.py::SetTest::test_union"
 ]

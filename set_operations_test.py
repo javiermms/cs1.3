@@ -19,6 +19,22 @@ class SetTest(unittest.TestCase):
 		assert r.elements == [1, 5, 7, 3, 9] 
 		assert r.size == 5
 
+	def test_size(self):
+		s = Set([1, 5, 7, 3, 9])
+
+		assert s.size is 5
+		s.remove(9)
+		assert s.size is 4
+		s.remove(3)
+		assert s.size is 3
+		s.remove(7)
+		assert s.size is 2
+		s.remove(5)
+		assert s.size is 1
+		s.remove(1)
+		assert s.size is 0
+		
+
 	def test_contains(self):
 		s = Set([1, 5, 9, 7])
 		r = Set([1, 5, 7, 3, 9])
