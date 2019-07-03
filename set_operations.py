@@ -35,12 +35,9 @@ class Set(object):
 
 	def union(self, other_set):
 		"""Returns a new set of two sets added together"""
-		new_set = Set()
+		new_set = Set(self.elements)
 
 		for element in other_set.elements:
-			new_set.add(element)
-		
-		for element in self.elements:
 			new_set.add(element)
 
 		return new_set
@@ -78,7 +75,7 @@ class Set(object):
 
 def test_set():
 	s = Set([1, 5, 9, 7, 3])
-	r = Set([1, 5, 7, 3, 9])
+	r = Set([1, 5, 9])
 	# print(s)  #set size
 	# s.add(10)
 	# s.add('cheese')
