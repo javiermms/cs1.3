@@ -66,11 +66,9 @@ def solve_word_jumble(words, circles, final, word_dic, jumble_sorted):
     
     # unjumbles word
     answers = unjumble_words(jumble_sorted, word_dic)
-    # print(answers)
 
-    # gets needed index
+    # gets needed indexes to get letters
     whole_arr = get_specific_indexes(circles)
-    # print(whole_arr)
 
     # gets the letter where the circles are
     letter = ""
@@ -80,12 +78,6 @@ def solve_word_jumble(words, circles, final, word_dic, jumble_sorted):
             letter += answers[count][num_in_array] 
         count += 1
 
-    # print(letter)   
-
-    # get nums for letters
-    # word_count = get_word_count_and_size(get_specific_indexes(final))
-    # print(word_count)
-    
     return answers
 
 
